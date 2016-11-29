@@ -3,9 +3,9 @@ Public Class ClientBuilder
     Dim _auth As String
     Dim _request As String
 
-    Public Function createAccount(ByVal etudiant As Etudiants) As String
+    Public Function createAccount(ByVal user As Users) As String
         Dim jo As New JObject
-        jo.Add("firstName", etudiant.firstName)
+        jo.Add("firstName", user.getFirstName())
         Return ""
     End Function
     Public Function studyField() As String

@@ -103,6 +103,7 @@
     <Compile Include="Protocol\Etudiants.vb" />
     <Compile Include="Protocol\ProtocolStatus.vb" />
     <Compile Include="Protocol\ServerProtocolBuilder.vb" />
+    <Compile Include="Protocol\Users.vb" />
     <Compile Include="TLS\AES256.vb" />
     <Compile Include="TLS\Connection.vb" />
     <Compile Include="TLS\ConnectionManager.vb" />

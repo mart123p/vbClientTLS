@@ -3,10 +3,15 @@ Public Class ClientBuilder
     Dim _auth As String
     Dim _request As String
 
-    Public Function createAccount(ByVal user As Users) As String
+    Public Function createAccount(ByVal usr As Users) As String
         Dim jo As New JObject
-        jo.Add("firstName", user.getFirstName())
-        Return ""
+        jo.Add("firstName", usr.getFirstName())
+        jo.Add("lastname", usr.getLastName())
+        jo.Add("email", usr.getEmail())
+        jo.Add("studyField", usr.getStudyField())
+        jo.Add("birthday", usr.getBirthday())
+        jo.Add("password", usr.getPassword())
+        Return "POST /User" & vbCrLf & jo.ToString()
     End Function
     Public Function studyField() As String
 

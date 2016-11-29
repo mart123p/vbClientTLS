@@ -1,4 +1,4 @@
-﻿Public Class Users
+﻿Public Class User
     Inherits Etudiants
     Dim _birthday As String
     Dim _password As String

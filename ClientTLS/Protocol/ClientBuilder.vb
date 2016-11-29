@@ -3,7 +3,7 @@ Public Class ClientBuilder
     Dim _auth As String
     Dim _request As String
 
-    Public Function createAccount(ByVal usr As Users) As String
+    Public Function createAccount(ByVal usr As User) As String
         Dim jo As New JObject
         jo.Add("firstName", usr.getFirstName())
         jo.Add("lastname", usr.getLastName())

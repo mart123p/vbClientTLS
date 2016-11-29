@@ -76,6 +76,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Protocol\ClientBuilder.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +99,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Protocol\ClientProtocolReader.vb" />
+    <Compile Include="Protocol\Etudiants.vb" />
+    <Compile Include="Protocol\ProtocolStatus.vb" />
+    <Compile Include="Protocol\ServerProtocolBuilder.vb" />
     <Compile Include="TLS\AES256.vb" />
     <Compile Include="TLS\Connection.vb" />
     <Compile Include="TLS\ConnectionManager.vb" />

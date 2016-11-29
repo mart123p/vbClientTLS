@@ -95,11 +95,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="TLS\AES256.vb" />
-    <Compile Include="TLS\AESKey.vb" />
     <Compile Include="TLS\Connection.vb" />
     <Compile Include="TLS\ConnectionManager.vb" />
     <Compile Include="TLS\CryptoTLS.vb" />
-    <Compile Include="TLS\EtudiantsProtocol\EtudiantsProtocol.vb" />
     <Compile Include="TLS\EtudiantsProtocol\EtudiantsRequest.vb" />
     <Compile Include="TLS\Hash.vb" />
     <Compile Include="TLS\KeyPairChanged.vb" />

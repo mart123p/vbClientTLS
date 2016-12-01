@@ -15,11 +15,13 @@ Public Class ClientBuilder
     End Function
     Public Function studyField() As String
 
-        Return ""
+        Return "GET /studyField" & vbCrLf
     End Function
-    Public Function connection() As String
-
-        Return ""
+    Public Function connection(ByVal id As String, ByVal pwd As String) As String
+        Dim jo As New JObject
+        jo.Add("id", id)
+        jo.Add("password", pwd)
+        Return "CONNECT /" & vbCrLf & jo.ToString()
     End Function
     Public Function disconnect() As String
 

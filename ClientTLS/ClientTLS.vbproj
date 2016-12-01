@@ -76,6 +76,13 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Home.Designer.vb">
+      <DependentUpon>Home.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Home.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Protocol\BadRequestException.vb" />
     <Compile Include="Protocol\ClientBuilder.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
@@ -100,10 +107,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Protocol\ClientProtocolReader.vb" />
+    <Compile Include="Protocol\ClientProtocolRequests.vb" />
     <Compile Include="Protocol\Etudiants.vb" />
+    <Compile Include="Protocol\NotFoundException.vb" />
     <Compile Include="Protocol\ProtocolStatus.vb" />
     <Compile Include="Protocol\ServerProtocolBuilder.vb" />
+    <Compile Include="Protocol\ServerReader.vb" />
     <Compile Include="Protocol\User.vb" />
+    <Compile Include="Protocol\UserRequest.vb" />
     <Compile Include="TLS\AES256.vb" />
     <Compile Include="TLS\Connection.vb" />
     <Compile Include="TLS\ConnectionManager.vb" />
@@ -119,6 +130,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

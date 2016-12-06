@@ -12,7 +12,7 @@ Public Class ClientBuilder
         jo.Add("studyField", usr.getStudyField())
         jo.Add("birthday", usr.getBirthday())
         jo.Add("password", usr.getPassword())
-        Return "POST /User" & vbCrLf & jo.ToString()
+        Return "POST /User" & vbCrLf & jo.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
     End Function
     Public Function studyField() As String
 
@@ -22,7 +22,7 @@ Public Class ClientBuilder
         Dim jo As New JObject
         jo.Add("id", id)
         jo.Add("password", pwd)
-        Return "CONNECT /" & vbCrLf & jo.ToString()
+        Return "CONNECT /" & vbCrLf & jo.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
     End Function
     Public Function disconnect(ByVal usr As User) As String
 
@@ -31,11 +31,11 @@ Public Class ClientBuilder
     Public Function studentDirectory(ByVal usr As User, ByVal studyField As String) As String
         Dim jo As New JObject
         jo.Add("studyField", studyField)
-        Return "GET /students" & vbCrLf & "AUTH: " & usr.getAuth() & vbCrLf & jo.ToString()
+        Return "GET /students" & vbCrLf & "AUTH: " & usr.getAuth() & vbCrLf & jo.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
     End Function
     Public Function profileManager(ByVal usr As User) As String
 
-        Return "PUT /user" & vbCrLf & "Auth: " & usr.getAuth() & vbCrLf & _managerJO.ToString()
+        Return "PUT /user" & vbCrLf & "Auth: " & usr.getAuth() & vbCrLf & _managerJO.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
     End Function
     Public Sub setEmail(ByVal email As String)
         _managerJO.Add("email", email)

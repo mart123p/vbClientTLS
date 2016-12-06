@@ -112,12 +112,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Protocol\ClientProtocolReader.vb" />
     <Compile Include="Protocol\ClientProtocolRequests.vb" />
     <Compile Include="Protocol\Etudiants.vb" />
     <Compile Include="Protocol\NotFoundException.vb" />
     <Compile Include="Protocol\ProtocolStatus.vb" />
-    <Compile Include="Protocol\ServerProtocolBuilder.vb" />
     <Compile Include="Protocol\ServerReader.vb" />
     <Compile Include="Protocol\User.vb" />
     <Compile Include="Protocol\UserRequest.vb" />

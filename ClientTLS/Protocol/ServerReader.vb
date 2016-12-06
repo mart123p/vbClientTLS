@@ -10,6 +10,7 @@ Public Class ServerReader
                 If errorCode = ProtocolStatus.OK Then
                     Dim o As JObject = JObject.Parse(requestArray(1))
                     'Here pass o.getValue("id")
+                    MsgBox(o.GetValue("id"))
                 End If
             Case "CONNECT /"
                 'Return ServerResponses.Connection

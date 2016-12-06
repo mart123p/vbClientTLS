@@ -29,6 +29,7 @@ Partial Class Home
         Me.connectinButton = New System.Windows.Forms.Button()
         Me.createAccountLabel = New System.Windows.Forms.LinkLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -96,17 +97,29 @@ Partial Class Home
         Me.Panel1.Size = New System.Drawing.Size(253, 138)
         Me.Panel1.TabIndex = 6
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(52, 24)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(174, 37)
+        Me.Label1.TabIndex = 7
+        Me.Label1.Text = "Bienvenue!"
+        '
         'Home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(280, 262)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "Home"
         Me.Text = "Home"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -117,4 +130,5 @@ Partial Class Home
     Friend WithEvents connectinButton As Button
     Friend WithEvents createAccountLabel As LinkLabel
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label1 As Label
 End Class

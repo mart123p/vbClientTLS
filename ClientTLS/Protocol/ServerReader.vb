@@ -2,8 +2,8 @@
 Public Class ServerReader
     Public Function getSubscribe(ByVal request As Dictionary(Of String, String)) As String
         If (request("errCode") = "200") Then
-            Dim o As Object = JObject.Parse(request("json"))
-            Return o.id
+            Dim o As JObject = JObject.Parse(request("json"))
+            Return o.GetValue("id").ToString
         End If
     End Function
     Public Function separate(ByVal request As String) As Dictionary(Of String, String)

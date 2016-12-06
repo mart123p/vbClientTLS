@@ -27,12 +27,15 @@ Partial Class Home
         Me.idTextbox = New System.Windows.Forms.TextBox()
         Me.pwdTextbox = New System.Windows.Forms.TextBox()
         Me.connectinButton = New System.Windows.Forms.Button()
+        Me.createAccountLabel = New System.Windows.Forms.LinkLabel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'idLabel
         '
         Me.idLabel.AutoSize = True
-        Me.idLabel.Location = New System.Drawing.Point(13, 117)
+        Me.idLabel.Location = New System.Drawing.Point(3, 22)
         Me.idLabel.Name = "idLabel"
         Me.idLabel.Size = New System.Drawing.Size(50, 13)
         Me.idLabel.TabIndex = 0
@@ -41,7 +44,7 @@ Partial Class Home
         'pwdLabel
         '
         Me.pwdLabel.AutoSize = True
-        Me.pwdLabel.Location = New System.Drawing.Point(12, 152)
+        Me.pwdLabel.Location = New System.Drawing.Point(3, 54)
         Me.pwdLabel.Name = "pwdLabel"
         Me.pwdLabel.Size = New System.Drawing.Size(53, 13)
         Me.pwdLabel.TabIndex = 1
@@ -49,41 +52,61 @@ Partial Class Home
         '
         'idTextbox
         '
-        Me.idTextbox.Location = New System.Drawing.Point(84, 114)
+        Me.idTextbox.Location = New System.Drawing.Point(88, 19)
         Me.idTextbox.Name = "idTextbox"
-        Me.idTextbox.Size = New System.Drawing.Size(100, 20)
+        Me.idTextbox.Size = New System.Drawing.Size(162, 20)
         Me.idTextbox.TabIndex = 2
         '
         'pwdTextbox
         '
-        Me.pwdTextbox.Location = New System.Drawing.Point(84, 149)
+        Me.pwdTextbox.Location = New System.Drawing.Point(88, 51)
         Me.pwdTextbox.Name = "pwdTextbox"
-        Me.pwdTextbox.Size = New System.Drawing.Size(100, 20)
+        Me.pwdTextbox.Size = New System.Drawing.Size(162, 20)
         Me.pwdTextbox.TabIndex = 3
         '
         'connectinButton
         '
-        Me.connectinButton.Location = New System.Drawing.Point(109, 188)
+        Me.connectinButton.Location = New System.Drawing.Point(175, 77)
         Me.connectinButton.Name = "connectinButton"
         Me.connectinButton.Size = New System.Drawing.Size(75, 23)
         Me.connectinButton.TabIndex = 4
         Me.connectinButton.Text = "Connection"
         Me.connectinButton.UseVisualStyleBackColor = True
         '
+        'createAccountLabel
+        '
+        Me.createAccountLabel.AutoSize = True
+        Me.createAccountLabel.Location = New System.Drawing.Point(98, 113)
+        Me.createAccountLabel.Name = "createAccountLabel"
+        Me.createAccountLabel.Size = New System.Drawing.Size(85, 13)
+        Me.createAccountLabel.TabIndex = 5
+        Me.createAccountLabel.TabStop = True
+        Me.createAccountLabel.Text = "Créer un compte"
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.idTextbox)
+        Me.Panel1.Controls.Add(Me.createAccountLabel)
+        Me.Panel1.Controls.Add(Me.pwdLabel)
+        Me.Panel1.Controls.Add(Me.connectinButton)
+        Me.Panel1.Controls.Add(Me.idLabel)
+        Me.Panel1.Controls.Add(Me.pwdTextbox)
+        Me.Panel1.Location = New System.Drawing.Point(15, 112)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(253, 138)
+        Me.Panel1.TabIndex = 6
+        '
         'Home
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 262)
-        Me.Controls.Add(Me.connectinButton)
-        Me.Controls.Add(Me.pwdTextbox)
-        Me.Controls.Add(Me.idTextbox)
-        Me.Controls.Add(Me.pwdLabel)
-        Me.Controls.Add(Me.idLabel)
+        Me.ClientSize = New System.Drawing.Size(280, 262)
+        Me.Controls.Add(Me.Panel1)
         Me.Name = "Home"
         Me.Text = "Home"
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -92,4 +115,6 @@ Partial Class Home
     Friend WithEvents idTextbox As TextBox
     Friend WithEvents pwdTextbox As TextBox
     Friend WithEvents connectinButton As Button
+    Friend WithEvents createAccountLabel As LinkLabel
+    Friend WithEvents Panel1 As Panel
 End Class

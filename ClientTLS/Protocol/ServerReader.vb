@@ -24,9 +24,10 @@ Public Class ServerReader
                     MessageBox.Show("Une erreur s'est produite...")
                 End If
                 'Return ServerResponses.Connection
-            Case "GET /StudyField"
+            Case "GET /studyField"
                 If errorCode = ProtocolStatus.OK Then
                     Dim o As JArray = JArray.Parse(requestArray(1))
+
                     For i = 0 To o.Count - 1
                         studyfields_.Add(o(i))
                     Next
@@ -39,7 +40,7 @@ Public Class ServerReader
                 'Return ServerResponses.Disconnect
             Case "GET /students"
                 'Return ServerResponses.StudentDirectory
-            Case "PUT /USER"
+            Case "PUT /user"
                 'Return ServerResponses.ModifyProfile
             Case Else
                 'Return ServerResponses.erreur

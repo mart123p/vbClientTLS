@@ -4,7 +4,7 @@ Public Class ServerReader
         Dim requestArray As String() = request.Split(vbCrLf)
         Dim errorCode As Integer = requestArray(0).Substring(0, 3)
         Dim firstLine As String = requestArray(0).Substring(4)
-
+        MsgBox(request)
         Select Case firstLine
             Case "POST /user"
                 If errorCode = ProtocolStatus.OK Then

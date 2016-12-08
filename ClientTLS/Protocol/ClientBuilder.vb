@@ -7,12 +7,12 @@ Public Class ClientBuilder
     Public Function createAccount(ByVal usr As User) As String
         Dim jo As New JObject
         jo.Add("firstName", usr.getFirstName())
-        jo.Add("lastname", usr.getLastName())
+        jo.Add("lastName", usr.getLastName())
         jo.Add("email", usr.getEmail())
         jo.Add("studyField", usr.getStudyField())
         jo.Add("birthday", usr.getBirthday())
         jo.Add("password", usr.getPassword())
-        Return "POST /User" & vbCrLf & jo.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
+        Return "POST /user" & vbCrLf & jo.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
     End Function
     Public Function studyField() As String
 

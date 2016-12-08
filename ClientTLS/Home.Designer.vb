@@ -64,6 +64,7 @@ Partial Class Home
         Me.pwdTextbox.Name = "pwdTextbox"
         Me.pwdTextbox.Size = New System.Drawing.Size(162, 20)
         Me.pwdTextbox.TabIndex = 3
+        Me.pwdTextbox.UseSystemPasswordChar = True
         '
         'connectinButton
         '
@@ -71,7 +72,7 @@ Partial Class Home
         Me.connectinButton.Name = "connectinButton"
         Me.connectinButton.Size = New System.Drawing.Size(75, 23)
         Me.connectinButton.TabIndex = 4
-        Me.connectinButton.Text = "Connection"
+        Me.connectinButton.Text = "Connexion"
         Me.connectinButton.UseVisualStyleBackColor = True
         '
         'createAccountLabel

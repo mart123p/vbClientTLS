@@ -37,6 +37,7 @@ Partial Class CreateAccount
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -154,18 +155,28 @@ Partial Class CreateAccount
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(238, 13)
+        Me.Button1.Location = New System.Drawing.Point(37, 293)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 14
-        Me.Button1.Text = "Button1"
+        Me.Button1.Text = "Annuler"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(118, 293)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 15
+        Me.Button2.Text = "S'inscrire"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'CreateAccount
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 405)
+        Me.ClientSize = New System.Drawing.Size(237, 329)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox5)
         Me.Controls.Add(Me.Label7)
@@ -203,4 +214,5 @@ Partial Class CreateAccount
     Friend WithEvents Label7 As Label
     Friend WithEvents TextBox5 As TextBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
 End Class

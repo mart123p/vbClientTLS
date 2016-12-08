@@ -55,4 +55,9 @@ Public Class Home
     Private Sub sendThreaded(ByVal socketAndBuilder As List(Of Object))
         socketAndBuilder(0).send(socketAndBuilder(1))
     End Sub
+
+    Private Sub createAccountLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles createAccountLabel.LinkClicked
+        Dim createAccount As New CreateAccount(socketTLS)
+        createAccount.ShowDialog()
+    End Sub
 End Class

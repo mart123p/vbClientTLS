@@ -14,10 +14,14 @@ Public Class ServerReader
                 If errorCode = ProtocolStatus.OK Then
                     Dim o As JObject = JObject.Parse(requestArray(1))
                     MsgBox(o.GetValue("id"))
+                Else
+                    MessageBox.Show("Une erreur s'est produite...")
                 End If
             Case "CONNECT /"
                 If errorCode = ProtocolStatus.OK Then
                     MsgBox("connected" & requestArray(1).Substring(6))
+                Else
+                    MessageBox.Show("Une erreur s'est produite...")
                 End If
                 'Return ServerResponses.Connection
             Case "GET /StudyField"
@@ -26,7 +30,8 @@ Public Class ServerReader
                     For i = 0 To o.Count - 1
                         studyfields_.Add(o(i))
                     Next
-
+                Else
+                    MessageBox.Show("Une erreur s'est produite...")
                 End If
             Case "GET /user"
                 'Return ServerResponses.GetUserDetails

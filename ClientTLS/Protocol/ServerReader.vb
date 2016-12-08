@@ -20,13 +20,13 @@ Public Class ServerReader
                     MsgBox("connected" & requestArray(1).Substring(6))
                 End If
                 'Return ServerResponses.Connection
-            Case "GET /StudyField"
+            Case "GET /studyField"
                 If errorCode = ProtocolStatus.OK Then
                     Dim o As JArray = JArray.Parse(requestArray(1))
+
                     For i = 0 To o.Count - 1
                         studyfields_.Add(o(i))
                     Next
-
                 End If
             Case "GET /user"
                 'Return ServerResponses.GetUserDetails
@@ -34,7 +34,7 @@ Public Class ServerReader
                 'Return ServerResponses.Disconnect
             Case "GET /students"
                 'Return ServerResponses.StudentDirectory
-            Case "PUT /USER"
+            Case "PUT /user"
                 'Return ServerResponses.ModifyProfile
             Case Else
                 'Return ServerResponses.erreur

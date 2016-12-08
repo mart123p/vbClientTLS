@@ -13,6 +13,9 @@ Public Class ServerReader
                     MsgBox(o.GetValue("id"))
                 End If
             Case "CONNECT /"
+                If errorCode = ProtocolStatus.OK Then
+                    MsgBox("connected" & requestArray(1).Substring(6))
+                End If
                 'Return ServerResponses.Connection
             Case "GET /StudyField"
                 'Return ServerResponses.StudyField

@@ -5,6 +5,7 @@ Public Class Home
     Dim serverIp As String = "127.0.0.1"
     Dim crypto As CryptoTLS
     Dim socketTLS As SocketTLS
+    Dim studyField As New List(Of String)
     Sub New()
 
         ' Cet appel est requis par le concepteur.
@@ -12,6 +13,12 @@ Public Class Home
 
         ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
         establishConnecion()
+        Dim builder As New ClientBuilder
+        Dim socketSendBuilder As New List(Of Object)
+        socketSendBuilder.Add(socketTLS)
+        socketSendBuilder.Add(builder.studyField())
+        Dim th As New Thread(AddressOf sendThreaded)
+        th.Start(socketSendBuilder)
     End Sub
     Private Sub connectinButton_Click(sender As Object, e As EventArgs) Handles connectinButton.Click
         Dim builder As New ClientBuilder
@@ -25,6 +32,10 @@ Public Class Home
     Private Sub receiver(ByVal request As EtudiantsRequest)
         Dim reader As New ServerReader
         reader.read(request.getRequest())
+        If Not reader.getStudyFields().Count = 0 Then
+            studyField = reader.getStudyFields()
+        End If
+
     End Sub
 
     Private Sub onConnect(ByVal request As EtudiantsRequest)
@@ -57,7 +68,7 @@ Public Class Home
     End Sub
 
     Private Sub createAccountLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles createAccountLabel.LinkClicked
-        Dim createAccount As New CreateAccount(socketTLS)
+        Dim createAccount As New CreateAccount(socketTLS, studyField)
         createAccount.ShowDialog()
     End Sub
 End Class

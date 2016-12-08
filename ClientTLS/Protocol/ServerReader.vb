@@ -1,5 +1,9 @@
 ﻿Imports Newtonsoft.Json.Linq
 Public Class ServerReader
+    Dim studyfields_ As New List(Of String)
+    Public Function getStudyFields() As List(Of String)
+        Return studyfields_
+    End Function
     Public Sub read(ByVal request As String)
         Dim requestArray As String() = request.Split(vbCrLf)
         Dim errorCode As Integer = requestArray(0).Substring(0, 3)
@@ -9,7 +13,6 @@ Public Class ServerReader
             Case "POST /user"
                 If errorCode = ProtocolStatus.OK Then
                     Dim o As JObject = JObject.Parse(requestArray(1))
-                    'Here pass o.getValue("id")
                     MsgBox(o.GetValue("id"))
                 End If
             Case "CONNECT /"
@@ -18,7 +21,13 @@ Public Class ServerReader
                 End If
                 'Return ServerResponses.Connection
             Case "GET /StudyField"
-                'Return ServerResponses.StudyField
+                If errorCode = ProtocolStatus.OK Then
+                    Dim o As JArray = JArray.Parse(requestArray(1))
+                    For i = 0 To o.Count - 1
+                        studyfields_.Add(o(i))
+                    Next
+
+                End If
             Case "GET /user"
                 'Return ServerResponses.GetUserDetails
             Case "DISCONNECT /"

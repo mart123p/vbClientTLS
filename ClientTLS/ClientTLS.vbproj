@@ -130,9 +130,7 @@
     <Compile Include="TLS\Bottin.Designer.vb">
       <DependentUpon>Bottin.vb</DependentUpon>
     </Compile>
-    <Compile Include="TLS\Bottin.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="TLS\Bottin.vb" />
     <Compile Include="TLS\Connection.vb" />
     <Compile Include="TLS\ConnectionManager.vb" />
     <Compile Include="TLS\CryptoTLS.vb" />

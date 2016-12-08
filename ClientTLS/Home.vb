@@ -12,13 +12,19 @@ Public Class Home
         InitializeComponent()
 
         ' Ajoutez une initialisation quelconque après l'appel InitializeComponent().
-        establishConnecion()
-        Dim builder As New ClientBuilder
-        Dim socketSendBuilder As New List(Of Object)
-        socketSendBuilder.Add(socketTLS)
-        socketSendBuilder.Add(builder.studyField())
-        Dim th As New Thread(AddressOf sendThreaded)
-        th.Start(socketSendBuilder)
+
+        Try
+            establishConnecion()
+            Dim builder As New ClientBuilder
+            Dim socketSendBuilder As New List(Of Object)
+            socketSendBuilder.Add(socketTLS)
+            socketSendBuilder.Add(builder.studyField())
+            Dim th As New Thread(AddressOf sendThreaded)
+            th.Start(socketSendBuilder)
+        Catch ex As Exception
+
+        End Try
+
     End Sub
     Private Sub connectinButton_Click(sender As Object, e As EventArgs) Handles connectinButton.Click
         Dim builder As New ClientBuilder

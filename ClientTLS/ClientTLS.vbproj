@@ -82,12 +82,6 @@
     <Compile Include="StudentsDirectory.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="connected.Designer.vb">
-      <DependentUpon>connected.vb</DependentUpon>
-    </Compile>
-    <Compile Include="connected.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="CreateAccount.Designer.vb">
       <DependentUpon>CreateAccount.vb</DependentUpon>
     </Compile>
@@ -139,12 +133,6 @@
     <Compile Include="Protocol\User.vb" />
     <Compile Include="Protocol\UserRequest.vb" />
     <Compile Include="TLS\AES256.vb" />
-    <Compile Include="TLS\Bottin.Designer.vb">
-      <DependentUpon>Bottin.vb</DependentUpon>
-    </Compile>
-    <Compile Include="TLS\Bottin.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="TLS\Connection.vb" />
     <Compile Include="TLS\ConnectionManager.vb" />
     <Compile Include="TLS\CryptoTLS.vb" />
@@ -163,9 +151,6 @@
     <EmbeddedResource Include="StudentsDirectory.resx">
       <DependentUpon>StudentsDirectory.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="connected.resx">
-      <DependentUpon>connected.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CreateAccount.resx">
       <DependentUpon>CreateAccount.vb</DependentUpon>
     </EmbeddedResource>
@@ -180,9 +165,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TLS\Bottin.resx">
-      <DependentUpon>Bottin.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

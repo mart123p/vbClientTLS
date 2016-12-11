@@ -16,7 +16,7 @@ Public Class ClientBuilder
     End Function
     Public Function studyField() As String
 
-        Return "GET /studyField" & vbCrLf
+        Return "GET /studyField"
     End Function
     Public Function connection(ByVal id As String, ByVal pwd As String) As String
         Dim jo As New JObject
@@ -24,14 +24,17 @@ Public Class ClientBuilder
         jo.Add("password", pwd)
         Return "CONNECT /" & vbCrLf & jo.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
     End Function
-    Public Function disconnect(ByVal usr As User) As String
-
-        Return "DISCONNECT /" & vbCrLf & "AUTH: " & usr.getAuth() & vbCrLf
+    Public Function disconnect(ByVal auth As String) As String
+        Return "DISCONNECT /" & vbCrLf & "AUTH: " & auth
     End Function
-    Public Function studentDirectory(ByVal usr As User, ByVal studyField As String) As String
+
+    Public Function getInfos(ByVal auth As String) As String
+        Return "GET /user" & vbCrLf & "AUTH: " & auth
+    End Function
+    Public Function studentDirectory(ByVal auth As String, ByVal studyField As String) As String
         Dim jo As New JObject
         jo.Add("studyField", studyField)
-        Return "GET /students" & vbCrLf & "AUTH: " & usr.getAuth() & vbCrLf & jo.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
+        Return "GET /students" & vbCrLf & "AUTH: " & auth & vbCrLf & jo.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
     End Function
     Public Function profileManager(ByVal usr As User) As String
 

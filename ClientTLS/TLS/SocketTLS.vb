@@ -75,6 +75,16 @@ Public Class SocketTLS
         End If
     End Sub
 
+    Public Overloads Sub Send(ByVal str As String, ByRef receiver As Action(Of EtudiantsRequest))
+        If type = SocketTLSType.Client Then
+            'We need to change the receiver function to a new one
+            Me.receiver = receiver
+            MyBase.Send(crypto.AESEncrypt(str, hostAesKey))
+            'We place the client in waiting mode for the server to respond
+            clientReceive()
+        End If
+    End Sub
+
 
     Private Sub serverReceive(ByVal socketClient As Socket)
         connections.Add(socketClient)

@@ -16,4 +16,8 @@
         Dim usr As New User(TextBox1.Text, TextBox2.Text, TextBox3.Text, ComboBox1.Text, DateTimePicker1.Text, TextBox4.Text)
         socketTLS_.Send(builder.createAccount(usr))
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dispose()
+    End Sub
 End Class

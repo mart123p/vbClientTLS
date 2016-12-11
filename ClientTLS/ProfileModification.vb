@@ -2,6 +2,8 @@
 Public Class ProfileModification
     Dim socketTLS As SocketTLS
     Dim auth As String
+    Dim emailCurrent As String
+    Dim studyFieldCurrent As String
     Delegate Sub dUpdateTextFields(ByVal email As String, ByVal studyField As String)
 
     Sub New(ByRef socketTLS As SocketTLS, ByVal auth As String, ByVal studyFields As List(Of String))
@@ -27,13 +29,13 @@ Public Class ProfileModification
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If txtEmail.Text <> "" Then
+        If txtEmail.Text <> emailCurrent Then
 
         ElseIf txtPassword1.Text <> "" And txtPassword2.Text <> "" Then
 
-        End If
+        ElseIf ComboBox1.SelectedItem.ToString <> studyFieldCurrent Then
 
-        MsgBox("Works")
+        End If
         Dispose()
     End Sub
     Private Sub sendRequest(ByVal request As String)
@@ -50,7 +52,8 @@ Public Class ProfileModification
     End Sub
     Private Sub UpdateTextField(ByVal email As String, ByVal studyField As String)
         txtEmail.Text = email
-
+        emailCurrent = email
+        studyFieldCurrent = studyField
         For i = 0 To ComboBox1.Items.Count - 1
             If ComboBox1.Items(i) = studyField Then
                 ComboBox1.SelectedIndex = i

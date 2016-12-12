@@ -1,5 +1,6 @@
 ﻿Imports System.Net.Sockets
 Imports System.Threading
+Imports System.Text.RegularExpressions
 
 Public Class Home
     Dim serverIp As String = "127.0.0.1"
@@ -45,6 +46,7 @@ Public Class Home
     Private Sub establishConnection()
         crypto = New CryptoTLS(False)
         Dim builder As New ClientBuilder
+        serverIpAdress()
         Try
 
             socketTLS = New SocketTLS(SocketTLSType.Client, crypto, serverIp, 5000, AddressOf receiver, AddressOf onConnect, AddressOf onDisconnect)
@@ -100,5 +102,21 @@ Public Class Home
         Dim threadLoader As New Thread(AddressOf establishConnection)
         threadLoader.IsBackground = True
         threadLoader.Start()
+    End Sub
+
+    Private Sub serverIpAdress()
+        Dim message, title, defaultValue As String
+        Dim AdrIp As Object
+        message = "Entrez l'addresse du serveur"
+        title = "Adresse du serveur"
+        defaultValue = "127.0.0.1"
+        Dim regexIp As Regex = New Regex("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
+        Do
+            AdrIp = InputBox(message, title, defaultValue)
+            If regexIp.IsMatch(AdrIp) Then
+                MsgBox("Adresse Ip invalide. Ex:127.0.0.1")
+            End If
+        Loop Until regexIp.IsMatch(AdrIp)
+        serverIp = AdrIp
     End Sub
 End Class

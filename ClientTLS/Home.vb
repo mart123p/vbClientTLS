@@ -34,11 +34,13 @@ Public Class Home
     End Sub
 
     Private Sub onConnect(ByVal request As EtudiantsRequest)
-
+        connectinButton.Enabled = True
+        createAccountLabel.Enabled = True
     End Sub
 
     Private Sub onDisconnect(ByVal endpoint As String)
-
+        MessageBox.Show("Le serveur a fermé la connexion. Le programme va se fermer.")
+        End
     End Sub
     Private Sub establishConnection()
         crypto = New CryptoTLS(False)
@@ -69,7 +71,12 @@ Public Class Home
     End Sub
 
     Private Sub sendThreaded(ByVal request As String)
-        socketTLS.Send(request, AddressOf receiver)
+        Try
+            socketTLS.Send(request, AddressOf receiver)
+        Catch ex As Exception
+            MessageBox.Show("Le serveur a planté. Le programme va maintenant se fermer")
+            End
+        End Try
     End Sub
     Private Sub ModalMessageBox(ByVal message As String, ByVal title As String)
         MessageBox.Show(Me, message, title)

@@ -3,6 +3,7 @@ Public Class ServerReader
     Dim studyfields_ As New List(Of String)
     Dim auth As String = ""
     Dim user As User
+    Dim id As String = ""
     Dim etudiants As New List(Of Etudiants)
 
     Public Function getStudyFields() As List(Of String)
@@ -17,6 +18,10 @@ Public Class ServerReader
         Return user
     End Function
 
+    Public Function getId() As String
+        Return id
+    End Function
+
     Public Function getEtudiants() As Etudiants()
         Return etudiants.ToArray
     End Function
@@ -24,22 +29,21 @@ Public Class ServerReader
         Dim requestArray As String() = request.Split(vbCrLf)
         Dim statusCode As Integer = requestArray(0).Substring(0, 3)
         Dim firstLine As String = requestArray(0).Substring(4)
-        MsgBox(request)
         Select Case firstLine
             Case "POST /user"
                 If statusCode = ProtocolStatus.OK Then
                     Dim o As JObject = JObject.Parse(requestArray(1))
-                    MsgBox(o.GetValue("id"))
+                    id = o.GetValue("id").ToString
                     Return ServerResponses.SignUp
                 Else
-                    MessageBox.Show("Une erreur s'est produite...")
+                    Return ServerResponses.erreur
                 End If
             Case "CONNECT /"
                 If statusCode = ProtocolStatus.OK Then
                     auth = requestArray(1).Substring(7)
                     Return ServerResponses.Connection
                 Else
-                    MessageBox.Show("Une erreur s'est produite...")
+                    Return ServerResponses.erreur
                 End If
             Case "GET /studyField"
                 If statusCode = ProtocolStatus.OK Then
@@ -50,7 +54,7 @@ Public Class ServerReader
                     Next
                     Return ServerResponses.StudyField
                 Else
-                    MessageBox.Show("Une erreur s'est produite...")
+                    Return ServerResponses.erreur
                 End If
             Case "GET /user"
                 Dim o As JObject = JObject.Parse(requestArray(1))
@@ -67,7 +71,11 @@ Public Class ServerReader
 
                 Return ServerResponses.StudentDirectory
             Case "PUT /user"
-                Return ServerResponses.ModifyProfile
+                If statusCode = ProtocolStatus.OK Then
+                    Return ServerResponses.ModifyProfile
+                Else
+                    Return ServerResponses.erreur
+                End If
             Case Else
                 Return ServerResponses.erreur
         End Select

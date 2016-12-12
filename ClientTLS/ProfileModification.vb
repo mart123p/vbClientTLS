@@ -5,6 +5,7 @@ Public Class ProfileModification
     Dim emailCurrent As String
     Dim studyFieldCurrent As String
     Delegate Sub dUpdateTextFields(ByVal email As String, ByVal studyField As String)
+    Delegate Sub dDispose()
 
     Sub New(ByRef socketTLS As SocketTLS, ByVal auth As String, ByVal studyFields As List(Of String))
 
@@ -29,17 +30,47 @@ Public Class ProfileModification
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim builder As New ClientBuilder
+        Dim requestHasToBeMade As Boolean
+
         If txtEmail.Text <> emailCurrent Then
+            Try
+                Dim email As New Net.Mail.MailAddress(txtEmail.Text)
+                requestHasToBeMade = True
+                builder.setEmail(txtEmail.Text)
 
-        ElseIf txtPassword1.Text <> "" And txtPassword2.Text <> "" Then
-
-        ElseIf ComboBox1.SelectedItem.ToString <> studyFieldCurrent Then
-
+            Catch ex As FormatException
+                MessageBox.Show("Le courriel n'est pas valide.", "Erreur")
+            End Try
         End If
-        Dispose()
+        If txtPassword1.Text <> "" And txtPassword2.Text <> "" Then
+            If txtPassword1.Text = txtPassword2.Text Then
+                requestHasToBeMade = True
+                builder.setPassword(txtPassword1.Text)
+            Else
+                MessageBox.Show("Les mots de passes ne sont pas identiques", "Erreur")
+            End If
+        End If
+        If ComboBox1.SelectedItem.ToString <> studyFieldCurrent Then
+            requestHasToBeMade = True
+            builder.setStudyField(ComboBox1.SelectedItem.ToString)
+        End If
+
+        If requestHasToBeMade Then
+            Dim th As New Thread(AddressOf sendRequest)
+            th.IsBackground = True
+            th.Start(builder.profileManager(auth))
+        Else
+            MessageBox.Show("Aucune modification n'a été trouvée", "Erreur")
+        End If
     End Sub
     Private Sub sendRequest(ByVal request As String)
-        socketTLS.Send(request, AddressOf receiver)
+        Try
+            socketTLS.Send(request, AddressOf receiver)
+        Catch ex As Exception
+            MessageBox.Show("Le serveur a planté. Le programme va maintenant se fermer")
+            End
+        End Try
     End Sub
 
     Private Sub receiver(ByVal request As EtudiantsRequest)
@@ -48,6 +79,9 @@ Public Class ProfileModification
             Case ServerResponses.GetUserDetails
                 Dim user As User = reader.getUser()
                 Invoke(New dUpdateTextFields(AddressOf UpdateTextField), user.getEmail, user.getStudyField)
+            Case ServerResponses.ModifyProfile
+                MessageBox.Show("Les modifications ont été faites.")
+                Invoke(New dDispose(AddressOf Dispose))
         End Select
     End Sub
     Private Sub UpdateTextField(ByVal email As String, ByVal studyField As String)

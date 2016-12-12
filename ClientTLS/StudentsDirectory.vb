@@ -65,6 +65,9 @@ Public Class StudentsDirectory
             Case ServerResponses.StudentDirectory
                 Dim etudiants As Etudiants() = reader.getEtudiants
                 Invoke(New dClearList(AddressOf deleteListView))
+                If etudiants.Count = 0 Then
+                    MessageBox.Show("Aucun étudiant est dans ce programme d'étude")
+                End If
                 For i = 0 To etudiants.Count - 1
                     Dim itm As ListViewItem
                     Dim arr(3) As String
@@ -88,7 +91,12 @@ Public Class StudentsDirectory
     End Sub
 
     Private Sub sendRequest(ByVal request As String)
-        socketTLS.Send(request, AddressOf receiver)
+        Try
+            socketTLS.Send(request, AddressOf receiver)
+        Catch ex As Exception
+            MessageBox.Show("Le serveur a planté. Le programme va maintenant se fermer")
+            End
+        End Try
     End Sub
 
     Private Sub DéconnexionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DéconnexionToolStripMenuItem.Click

@@ -73,6 +73,7 @@ Partial Class Home
         '
         'connectinButton
         '
+        Me.connectinButton.Enabled = False
         Me.connectinButton.Location = New System.Drawing.Point(233, 95)
         Me.connectinButton.Margin = New System.Windows.Forms.Padding(4)
         Me.connectinButton.Name = "connectinButton"
@@ -84,6 +85,7 @@ Partial Class Home
         'createAccountLabel
         '
         Me.createAccountLabel.AutoSize = True
+        Me.createAccountLabel.Enabled = False
         Me.createAccountLabel.Location = New System.Drawing.Point(131, 139)
         Me.createAccountLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.createAccountLabel.Name = "createAccountLabel"

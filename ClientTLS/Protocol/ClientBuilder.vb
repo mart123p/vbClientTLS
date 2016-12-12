@@ -1,8 +1,7 @@
 ﻿Imports Newtonsoft.Json.Linq
 Public Class ClientBuilder
-    Dim _auth As String
     Dim _request As String
-    Dim _managerJO As JObject
+    Dim _managerJO As New JObject
 
     Public Function createAccount(ByVal usr As User) As String
         Dim jo As New JObject
@@ -36,9 +35,8 @@ Public Class ClientBuilder
         jo.Add("studyField", studyField)
         Return "GET /students" & vbCrLf & "AUTH: " & auth & vbCrLf & jo.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
     End Function
-    Public Function profileManager(ByVal usr As User) As String
-
-        Return "PUT /user" & vbCrLf & "Auth: " & usr.getAuth() & vbCrLf & _managerJO.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
+    Public Function profileManager(ByVal auth As String) As String
+        Return "PUT /user" & vbCrLf & "AUTH: " & auth & vbCrLf & _managerJO.ToString().Replace(vbCrLf, "").Replace(vbTab, "")
     End Function
     Public Sub setEmail(ByVal email As String)
         _managerJO.Add("email", email)

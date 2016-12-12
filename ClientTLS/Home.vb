@@ -7,6 +7,7 @@ Public Class Home
     Dim socketTLS As SocketTLS
     Dim studyField As New List(Of String)
     Delegate Sub disableButton()
+    Delegate Sub enableButton()
     Delegate Sub hideWindow()
     Delegate Sub showWindow()
     Delegate Sub dMessageBox(ByVal message As String, ByVal title As String)
@@ -34,8 +35,7 @@ Public Class Home
     End Sub
 
     Private Sub onConnect(ByVal request As EtudiantsRequest)
-        connectinButton.Enabled = True
-        createAccountLabel.Enabled = True
+        Invoke(New enableButton(AddressOf showButtons))
     End Sub
 
     Private Sub onDisconnect(ByVal endpoint As String)
@@ -83,6 +83,11 @@ Public Class Home
     End Sub
     Public Overloads Sub Show()
         Invoke(New showWindow(AddressOf MyBase.Show))
+    End Sub
+
+    Private Sub showButtons()
+        connectinButton.Enabled = True
+        createAccountLabel.Enabled = True
     End Sub
 
     Private Sub serverNotFound()

@@ -226,9 +226,10 @@ Public Class SocketTLS
                     Receive(serverResponse)
                     Dim reader As New TLSInitProtocolReader(crypto.RSADecrypt(serverResponse))
                     remoteAesKey = reader.getServerAESKey
-                    onConnect(Nothing)
+                    onConnect(New EtudiantsRequest(Me, "", "", crypto))
                     communicationState = SocketTLSServerState.Ready
                 Catch ex As Exception
+                    MsgBox(ex.ToString)
                     Close()
                     onDisconnect("")
                     communicationState = SocketTLSServerState.Ready

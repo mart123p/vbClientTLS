@@ -43,6 +43,7 @@ Public Class ServerReader
                     auth = requestArray(1).Substring(7)
                     Return ServerResponses.Connection
                 Else
+                    MsgBox("Mauvais matricule ou mot de pass")
                     Return ServerResponses.erreur
                 End If
             Case "GET /studyField"

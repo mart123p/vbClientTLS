@@ -37,8 +37,13 @@ Public Class StudentsDirectory
     End Sub
 
     Private Sub ModifierMonProfileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ModifierMonProfileToolStripMenuItem.Click
-        Dim modify As New ProfileModification(socketTLS, auth, studyField)
-        modify.ShowDialog()
+        If studyField.Count = 0 Then
+            MsgBox("Le serveur ne possède pas de programme d'étude, veuillez réessayer plus-tard...")
+        Else
+            Dim modify As New ProfileModification(socketTLS, auth, studyField)
+            modify.ShowDialog()
+        End If
+
     End Sub
 
     Private Sub LoadEtudiants()

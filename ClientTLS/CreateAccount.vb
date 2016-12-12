@@ -12,7 +12,12 @@ Public Class CreateAccount
         For Each sf As String In studyField
             ComboBox1.Items.Add(sf)
         Next
-        ComboBox1.SelectedIndex = 0
+        Try
+            ComboBox1.SelectedIndex = 0
+        Catch ex As Exception
+            MsgBox("Une erreur s'est produite avec le serveur, veuiller réessayer plus-tard")
+            Me.Close()
+        End Try
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If TextBox1.Text <> "" And TextBox2.Text <> "" And TextBox3.Text <> "" And TextBox4.Text <> "" And TextBox5.Text <> "" Then

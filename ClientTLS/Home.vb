@@ -12,6 +12,7 @@ Public Class Home
     Delegate Sub hideWindow()
     Delegate Sub showWindow()
     Delegate Sub dMessageBox(ByVal message As String, ByVal title As String)
+    Dim threadLoader As New Thread(AddressOf establishConnection)
 
     Private Sub connectinButton_Click(sender As Object, e As EventArgs) Handles connectinButton.Click
         Dim builder As New ClientBuilder
@@ -44,32 +45,48 @@ Public Class Home
         End
     End Sub
     Private Sub establishConnection()
-        crypto = New CryptoTLS(False)
-        Dim builder As New ClientBuilder
+        Dim tryconnect As Boolean = True
+        Dim asErrors As Boolean = False
         serverIpAdress()
-        Try
+        Do
+            asErrors = False
+            crypto = New CryptoTLS(False)
+            Dim builder As New ClientBuilder
+            Try
+                socketTLS = New SocketTLS(SocketTLSType.Client, crypto, serverIp, 5000, AddressOf receiver, AddressOf onConnect, AddressOf onDisconnect)
 
-            socketTLS = New SocketTLS(SocketTLSType.Client, crypto, serverIp, 5000, AddressOf receiver, AddressOf onConnect, AddressOf onDisconnect)
+                sendThreaded(builder.studyField)
+            Catch ex As KeyPairChanged
 
-            sendThreaded(builder.studyField)
-        Catch ex As KeyPairChanged
+                If MessageBox.Show("La clé publique a changé. Ceci peut poser un risque de sécurité. Voulez vous continuer malgré les circonstances?", "Avertissement", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                    Try
+                        socketTLS = New SocketTLS(SocketTLSType.Client, crypto, serverIp, 5000, AddressOf receiver, AddressOf onConnect, AddressOf onDisconnect, True)
+                        sendThreaded(builder.studyField)
+                    Catch ex2 As SocketException
+                        If MsgBox("Le serveur n'est pas trouvable" & vbCrLf & "Voulez vous Réessayer de vous connecter?", vbYesNo, "Réessayer la connection") = vbNo Then
+                            tryconnect = False
+                            Invoke(New dMessageBox(AddressOf ModalMessageBox), "Le serveur n'est pas trouvable", "Erreur")
+                            Invoke(New disableButton(AddressOf serverNotFound))
+                        Else
+                            asErrors = True
+                            serverIpAdress()
+                        End If
+                    End Try
+                Else
+                    Invoke(New disableButton(AddressOf serverNotFound))
+                End If
 
-            If MessageBox.Show("La clé publique a changé. Ceci peut poser un risque de sécurité. Voulez vous continuer malgré les circonstances?", "Avertissement", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                Try
-                    socketTLS = New SocketTLS(SocketTLSType.Client, crypto, serverIp, 5000, AddressOf receiver, AddressOf onConnect, AddressOf onDisconnect, True)
-                    sendThreaded(builder.studyField)
-                Catch ex2 As SocketException
+            Catch ex As SocketException
+                If MsgBox("Le serveur n'est pas trouvable" & vbCrLf & "Voulez vous Réessayer de vous connecter?", vbYesNo, "Réessayer la connection") = vbNo Then
+                    tryconnect = False
                     Invoke(New dMessageBox(AddressOf ModalMessageBox), "Le serveur n'est pas trouvable", "Erreur")
                     Invoke(New disableButton(AddressOf serverNotFound))
-                End Try
-            Else
-                Invoke(New disableButton(AddressOf serverNotFound))
-            End If
-
-        Catch ex As SocketException
-            Invoke(New dMessageBox(AddressOf ModalMessageBox), "Le serveur n'est pas trouvable", "Erreur")
-            Invoke(New disableButton(AddressOf serverNotFound))
-        End Try
+                Else
+                    asErrors = True
+                    serverIpAdress()
+                End If
+            End Try
+        Loop While tryconnect And asErrors
     End Sub
 
     Private Sub sendThreaded(ByVal request As String)
@@ -100,27 +117,35 @@ Public Class Home
 
     Private Sub createAccountLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles createAccountLabel.LinkClicked
         Dim createAccount As New CreateAccount(socketTLS, studyField)
-        createAccount.ShowDialog()
+        Try
+            createAccount.ShowDialog()
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     Private Sub Home_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim threadLoader As New Thread(AddressOf establishConnection)
         threadLoader.IsBackground = True
         threadLoader.Start()
     End Sub
 
     Private Sub serverIpAdress()
         Dim message, title, defaultValue As String
-        Dim AdrIp As Object
+        Dim AdrIp As String
         message = "Entrez l'addresse du serveur"
         title = "Adresse du serveur"
-        defaultValue = "127.0.0.1"
-        Dim regexIp As Regex = New Regex("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
+        defaultValue = serverIp
+        Dim regexIp As Regex = New Regex("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")
         Do
             AdrIp = InputBox(message, title, defaultValue)
-            If regexIp.IsMatch(AdrIp) Then
-                MsgBox("Adresse Ip invalide. Ex:127.0.0.1")
+            If AdrIp.Length = 0 Then
+                threadLoader.Abort()
             End If
+            If Not regexIp.IsMatch(AdrIp) Then
+                MsgBox("Adresse Ip invalide. Ex: 127.0.0.1")
+            End If
+
         Loop Until regexIp.IsMatch(AdrIp)
         serverIp = AdrIp
     End Sub

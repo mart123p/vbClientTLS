@@ -39,8 +39,8 @@ Public Class SocketTLS
         Me.onConnect = onConnect
         Me.onDisconnect = onDisconnect
         Me.skipKeyVerification = skipKeyVerification
-        Dim ep As IPEndPoint = New IPEndPoint(IPAddress.Parse(ip), port)
 
+        Dim ep As IPEndPoint = New IPEndPoint(IPAddress.Parse(ip), port)
         If (type = SocketTLSType.Server) Then
             Bind(ep)
             While True
@@ -64,6 +64,7 @@ Public Class SocketTLS
             End While
             'We have done the socket tls protocol, we will wait for the client to call the send command to encrypt data and send it to the server
         End If
+
 
     End Sub
 

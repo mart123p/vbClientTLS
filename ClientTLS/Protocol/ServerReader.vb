@@ -45,7 +45,7 @@ Public Class ServerReader
                     auth = requestArray(1).Substring(7)
                     Return ServerResponses.Connection
                 Else
-                    MsgBox("Mauvais matricule ou mot de pass")
+                    MsgBox("Mauvais matricule ou mot de passe")
                     Return ServerResponses.erreur
                 End If
             Case "GET /studyField"
@@ -61,7 +61,8 @@ Public Class ServerReader
                 End If
             Case "GET /user"
                 Dim o As JObject = JObject.Parse(requestArray(1))
-                user = New User("", "", o.GetValue("email"), o.GetValue("studyField"), "", "")
+                user = New User(o.GetValue("firstName"), o.GetValue("lastName"), o.GetValue("email"), o.GetValue("studyField"), o.GetValue("birthday"), "")
+                user.setMat(o.GetValue("id"))
                 Return ServerResponses.GetUserDetails
             Case "DISCONNECT /"
                 Return ServerResponses.Disconnect
@@ -76,6 +77,8 @@ Public Class ServerReader
             Case "PUT /user"
                 If statusCode = ProtocolStatus.OK Then
                     Return ServerResponses.ModifyProfile
+                ElseIf statusCode = ProtocolStatus.CONFLICT Then
+                    Return ServerResponses.erreurUtilisateurPareil
                 Else
                     Return ServerResponses.erreur
                 End If

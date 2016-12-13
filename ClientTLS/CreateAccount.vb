@@ -72,7 +72,7 @@ Public Class CreateAccount
                 Invoke(New dbuttonTrue(AddressOf buttonTrue))
                 MessageBox.Show("Une erreur est survenue")
             Case ServerResponses.erreurUtilisateurPareil
-                MsgBox("Un utilisateur avec la même identité existe délà...")
+                MsgBox("Un utilisateur avec le même courriel existe déjà.")
                 Invoke(New dbuttonTrue(AddressOf buttonTrue))
         End Select
     End Sub

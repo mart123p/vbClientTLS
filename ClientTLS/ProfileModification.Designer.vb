@@ -33,12 +33,20 @@ Partial Class ProfileModification
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtFirstName = New System.Windows.Forms.TextBox()
+        Me.txtLastName = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtBirthday = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtId = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 49)
+        Me.Label1.Location = New System.Drawing.Point(12, 128)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(42, 13)
         Me.Label1.TabIndex = 0
@@ -46,7 +54,7 @@ Partial Class ProfileModification
         '
         'txtEmail
         '
-        Me.txtEmail.Location = New System.Drawing.Point(15, 65)
+        Me.txtEmail.Location = New System.Drawing.Point(15, 144)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(277, 20)
         Me.txtEmail.TabIndex = 1
@@ -54,7 +62,7 @@ Partial Class ProfileModification
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 123)
+        Me.Label2.Location = New System.Drawing.Point(12, 167)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(71, 13)
         Me.Label2.TabIndex = 2
@@ -62,14 +70,14 @@ Partial Class ProfileModification
         '
         'txtPassword1
         '
-        Me.txtPassword1.Location = New System.Drawing.Point(15, 139)
+        Me.txtPassword1.Location = New System.Drawing.Point(15, 183)
         Me.txtPassword1.Name = "txtPassword1"
         Me.txtPassword1.Size = New System.Drawing.Size(277, 20)
         Me.txtPassword1.TabIndex = 3
         '
         'txtPassword2
         '
-        Me.txtPassword2.Location = New System.Drawing.Point(15, 182)
+        Me.txtPassword2.Location = New System.Drawing.Point(15, 222)
         Me.txtPassword2.Name = "txtPassword2"
         Me.txtPassword2.Size = New System.Drawing.Size(277, 20)
         Me.txtPassword2.TabIndex = 4
@@ -77,7 +85,7 @@ Partial Class ProfileModification
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 166)
+        Me.Label3.Location = New System.Drawing.Point(12, 206)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(146, 13)
         Me.Label3.TabIndex = 5
@@ -128,11 +136,87 @@ Partial Class ProfileModification
         Me.Button2.Text = "Annuler"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(12, 31)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(43, 13)
+        Me.Label6.TabIndex = 11
+        Me.Label6.Text = "Prénom"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(153, 31)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(29, 13)
+        Me.Label7.TabIndex = 12
+        Me.Label7.Text = "Nom"
+        '
+        'txtFirstName
+        '
+        Me.txtFirstName.Enabled = False
+        Me.txtFirstName.Location = New System.Drawing.Point(15, 47)
+        Me.txtFirstName.Name = "txtFirstName"
+        Me.txtFirstName.Size = New System.Drawing.Size(132, 20)
+        Me.txtFirstName.TabIndex = 13
+        '
+        'txtLastName
+        '
+        Me.txtLastName.Enabled = False
+        Me.txtLastName.Location = New System.Drawing.Point(156, 47)
+        Me.txtLastName.Name = "txtLastName"
+        Me.txtLastName.Size = New System.Drawing.Size(136, 20)
+        Me.txtLastName.TabIndex = 14
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(12, 70)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(96, 13)
+        Me.Label8.TabIndex = 15
+        Me.Label8.Text = "Date de naissance"
+        '
+        'txtBirthday
+        '
+        Me.txtBirthday.Enabled = False
+        Me.txtBirthday.Location = New System.Drawing.Point(15, 86)
+        Me.txtBirthday.Name = "txtBirthday"
+        Me.txtBirthday.Size = New System.Drawing.Size(132, 20)
+        Me.txtBirthday.TabIndex = 16
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(153, 70)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(50, 13)
+        Me.Label9.TabIndex = 17
+        Me.Label9.Text = "Matricule"
+        '
+        'txtId
+        '
+        Me.txtId.Enabled = False
+        Me.txtId.Location = New System.Drawing.Point(156, 86)
+        Me.txtId.Name = "txtId"
+        Me.txtId.Size = New System.Drawing.Size(136, 20)
+        Me.txtId.TabIndex = 18
+        '
         'ProfileModification
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(301, 330)
+        Me.Controls.Add(Me.txtId)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.txtBirthday)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.txtLastName)
+        Me.Controls.Add(Me.txtFirstName)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label5)
@@ -162,4 +246,12 @@ Partial Class ProfileModification
     Friend WithEvents Label5 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents txtFirstName As TextBox
+    Friend WithEvents txtLastName As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents txtBirthday As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents txtId As TextBox
 End Class

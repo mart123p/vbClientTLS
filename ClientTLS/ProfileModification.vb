@@ -4,7 +4,7 @@ Public Class ProfileModification
     Dim auth As String
     Dim emailCurrent As String
     Dim studyFieldCurrent As String
-    Delegate Sub dUpdateTextFields(ByVal email As String, ByVal studyField As String)
+    Delegate Sub dUpdateTextFields(ByVal email As String, ByVal studyField As String, ByVal firstName As String, ByVal lastName As String, ByVal id As String, ByVal birthday As String)
     Delegate Sub dDispose()
 
     Sub New(ByRef socketTLS As SocketTLS, ByVal auth As String, ByVal studyFields As List(Of String))
@@ -41,6 +41,11 @@ Public Class ProfileModification
 
             Catch ex As FormatException
                 MessageBox.Show("Le courriel n'est pas valide.", "Erreur")
+                Exit Sub
+            Catch ex As ArgumentException
+                MessageBox.Show("Le courriel ne peut être vide.", "Erreur")
+                txtEmail.Text = emailCurrent
+                Exit Sub
             End Try
         End If
         If txtPassword1.Text <> "" And txtPassword2.Text <> "" Then
@@ -49,6 +54,7 @@ Public Class ProfileModification
                 builder.setPassword(txtPassword1.Text)
             Else
                 MessageBox.Show("Les mots de passes ne sont pas identiques", "Erreur")
+                Exit Sub
             End If
         End If
         If ComboBox1.SelectedItem.ToString <> studyFieldCurrent Then
@@ -78,14 +84,20 @@ Public Class ProfileModification
         Select Case (reader.read(request.getRequest))
             Case ServerResponses.GetUserDetails
                 Dim user As User = reader.getUser()
-                Invoke(New dUpdateTextFields(AddressOf UpdateTextField), user.getEmail, user.getStudyField)
+                Invoke(New dUpdateTextFields(AddressOf UpdateTextField), user.getEmail, user.getStudyField, user.getFirstName, user.getLastName, user.getMat, user.getBirthday)
             Case ServerResponses.ModifyProfile
                 MessageBox.Show("Les modifications ont été faites.")
                 Invoke(New dDispose(AddressOf Dispose))
+            Case ServerResponses.erreurUtilisateurPareil
+                MessageBox.Show("Le courriel existe déjà dans la base de données.")
         End Select
     End Sub
-    Private Sub UpdateTextField(ByVal email As String, ByVal studyField As String)
+    Private Sub UpdateTextField(ByVal email As String, ByVal studyField As String, ByVal firstName As String, ByVal lastName As String, ByVal id As String, ByVal birthday As String)
         txtEmail.Text = email
+        txtBirthday.Text = birthday
+        txtFirstName.Text = firstName
+        txtLastName.Text = lastName
+        txtId.Text = id
         emailCurrent = email
         studyFieldCurrent = studyField
         For i = 0 To ComboBox1.Items.Count - 1

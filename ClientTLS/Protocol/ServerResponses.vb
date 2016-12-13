@@ -7,4 +7,5 @@
     ModifyProfile
     GetUserDetails
     erreur
+    erreurUtilisateurPareil
 End Enum

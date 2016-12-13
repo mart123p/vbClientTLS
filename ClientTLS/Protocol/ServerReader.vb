@@ -35,6 +35,8 @@ Public Class ServerReader
                     Dim o As JObject = JObject.Parse(requestArray(1))
                     id = o.GetValue("id").ToString
                     Return ServerResponses.SignUp
+                ElseIf statusCode = ProtocolStatus.CONFLICT Then
+                    Return ServerResponses.erreurUtilisateurPareil
                 Else
                     Return ServerResponses.erreur
                 End If

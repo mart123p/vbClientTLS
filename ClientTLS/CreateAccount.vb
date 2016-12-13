@@ -2,6 +2,7 @@
 Public Class CreateAccount
     Dim socketTLS_ As SocketTLS
     Delegate Sub dDispose()
+    Delegate Sub dbuttonTrue()
     Sub New(ByRef socketTLS As SocketTLS, ByRef studyField As List(Of String))
 
         ' Cet appel est requis par le concepteur.
@@ -37,7 +38,7 @@ Public Class CreateAccount
                     MessageBox.Show("L'addrese courriel n'est pas valide")
                 End If
             Else
-                MessageBox.Show(Me, "Les mots de passe doivent être identique", "Erreur")
+                MessageBox.Show(Me, "Les mots de passe doivent être identiques", "Erreur")
             End If
         Else
             MessageBox.Show(Me, "Tous les champs doivent être remplis", "Erreur")
@@ -59,7 +60,6 @@ Public Class CreateAccount
             MessageBox.Show("Le serveur a planté. Le programme va maintenant se fermer")
             End
         End Try
-
     End Sub
 
     Private Sub receiver(ByVal request As EtudiantsRequest)
@@ -69,13 +69,18 @@ Public Class CreateAccount
                 MessageBox.Show("Le compte a été crée voici votre matricule: " & reader.getId)
                 Invoke(New dDispose(AddressOf Dispose))
             Case ServerResponses.erreur
-                Button2.Enabled = True
+                Invoke(New dbuttonTrue(AddressOf buttonTrue))
                 MessageBox.Show("Une erreur est survenue")
-
+            Case ServerResponses.erreurUtilisateurPareil
+                MsgBox("Un utilisateur avec la même identité existe délà...")
+                Invoke(New dbuttonTrue(AddressOf buttonTrue))
         End Select
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dispose()
+    End Sub
+    Private Sub buttonTrue()
+        Button2.Enabled = True
     End Sub
 End Class

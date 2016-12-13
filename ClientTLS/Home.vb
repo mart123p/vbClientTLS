@@ -47,7 +47,6 @@ Public Class Home
     Private Sub establishConnection()
         Dim tryconnect As Boolean = True
         Dim asErrors As Boolean = False
-        serverIpAdress()
         Do
             asErrors = False
             crypto = New CryptoTLS(False)
@@ -63,7 +62,7 @@ Public Class Home
                         socketTLS = New SocketTLS(SocketTLSType.Client, crypto, serverIp, 5000, AddressOf receiver, AddressOf onConnect, AddressOf onDisconnect, True)
                         sendThreaded(builder.studyField)
                     Catch ex2 As SocketException
-                        If MsgBox("Le serveur n'est pas trouvable" & vbCrLf & "Voulez vous Réessayer de vous connecter?", vbYesNo, "Réessayer la connection") = vbNo Then
+                        If MsgBox("Le serveur n'est pas trouvable" & vbCrLf & "Voulez vous réessayer de vous connecter?", vbYesNo, "Réessayer la connexion") = vbNo Then
                             tryconnect = False
                             Invoke(New dMessageBox(AddressOf ModalMessageBox), "Le serveur n'est pas trouvable", "Erreur")
                             Invoke(New disableButton(AddressOf serverNotFound))
@@ -77,7 +76,7 @@ Public Class Home
                 End If
 
             Catch ex As SocketException
-                If MsgBox("Le serveur n'est pas trouvable" & vbCrLf & "Voulez vous Réessayer de vous connecter?", vbYesNo, "Réessayer la connection") = vbNo Then
+                If MsgBox("Le serveur n'est pas trouvable" & vbCrLf & "Voulez vous réessayer de vous connecter?", vbYesNo, "Réessayer la connexion") = vbNo Then
                     tryconnect = False
                     Invoke(New dMessageBox(AddressOf ModalMessageBox), "Le serveur n'est pas trouvable", "Erreur")
                     Invoke(New disableButton(AddressOf serverNotFound))
@@ -133,7 +132,7 @@ Public Class Home
     Private Sub serverIpAdress()
         Dim message, title, defaultValue As String
         Dim AdrIp As String
-        message = "Entrez l'addresse du serveur"
+        message = "Entrez l'adresse du serveur"
         title = "Adresse du serveur"
         defaultValue = serverIp
         Dim regexIp As Regex = New Regex("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")

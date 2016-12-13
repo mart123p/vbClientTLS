@@ -74,6 +74,7 @@ Partial Class ProfileModification
         Me.txtPassword1.Name = "txtPassword1"
         Me.txtPassword1.Size = New System.Drawing.Size(277, 20)
         Me.txtPassword1.TabIndex = 3
+        Me.txtPassword1.UseSystemPasswordChar = True
         '
         'txtPassword2
         '
@@ -81,6 +82,7 @@ Partial Class ProfileModification
         Me.txtPassword2.Name = "txtPassword2"
         Me.txtPassword2.Size = New System.Drawing.Size(277, 20)
         Me.txtPassword2.TabIndex = 4
+        Me.txtPassword2.UseSystemPasswordChar = True
         '
         'Label3
         '
